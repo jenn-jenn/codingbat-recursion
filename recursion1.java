@@ -198,7 +198,7 @@ public class recursion1 {
 
         return str.substring(0, 1) + "*" + allStar(str.substring(1));
     }
-    
+
     public String pairStar(String str) {
         if (str.length() == 0) {
             return "";
@@ -213,6 +213,60 @@ public class recursion1 {
         }
 
         return str.substring(0, 1) + stars + pairStar(str.substring(1));
+    }
+
+    public String endX(String str) {
+        if (str.length() == 0) {
+            return "";
+        }
+
+        String theChar = str.substring(0, 1);
+        String anX = "";
+        if (theChar.equals("x")) {
+            theChar = "";
+            anX = "x";
+        }
+
+        return theChar + endX(str.substring(1)) + anX;
+    }
+    
+    public int countPairs(String str) {
+        if (str.length() < 3) {
+            return 0;
+        }
+        int count = 0;
+        if (str.substring(0, 1).equals(str.substring(2, 3))) {
+            count += 1;
+        }
+
+        return count + countPairs(str.substring(1));
+    }
+    
+    public int countAbc(String str) {
+        if (str.length() < 3) {
+            return 0;
+        }
+        int count = 0;
+        String s = str.substring(0, 3);
+        if (s.equals("abc") || s.equals("aba")) {
+            count++;
+        }
+
+        return count + countAbc(str.substring(1));
+    }
+    
+    public int count11(String str) {
+        if (str.length() < 2) {
+            return 0;
+        }
+        int count = 0;
+        int skip = 1;
+        String s = str.substring(0, 2);
+        if (s.equals("11")) {
+            count++;
+            skip = 2;
+        }
+        return count + count11(str.substring(skip));
     }
 
     public static void main(String[] args) {
