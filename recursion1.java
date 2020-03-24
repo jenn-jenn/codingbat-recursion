@@ -229,7 +229,7 @@ public class recursion1 {
 
         return theChar + endX(str.substring(1)) + anX;
     }
-    
+
     public int countPairs(String str) {
         if (str.length() < 3) {
             return 0;
@@ -241,7 +241,7 @@ public class recursion1 {
 
         return count + countPairs(str.substring(1));
     }
-    
+
     public int countAbc(String str) {
         if (str.length() < 3) {
             return 0;
@@ -254,7 +254,7 @@ public class recursion1 {
 
         return count + countAbc(str.substring(1));
     }
-    
+
     public int count11(String str) {
         if (str.length() < 2) {
             return 0;
@@ -268,49 +268,76 @@ public class recursion1 {
         }
         return count + count11(str.substring(skip));
     }
+
     public String stringClean(String str) {
-        if(str.length() == 1) {
-            return str.substring(0,1);
+        if (str.length() == 1) {
+            return str.substring(0, 1);
         }
-        if(str.length() < 2) {
+        if (str.length() < 2) {
             return "";
         }
         String theChar = str.substring(0, 1);
-        String secondChar = str.substring(1,2);
-        if(theChar.equals(secondChar)){
+        String secondChar = str.substring(1, 2);
+        if (theChar.equals(secondChar)) {
             theChar = "";
         }
-        
+
         return theChar + stringClean(str.substring(1));
     }
+
     public int countHi2(String str) {
-        if(str.length() == 2) {
-            if(str.substring(0,1).equals("h") && str.substring(1,2).equals("i")){
+        if (str.length() == 2) {
+            if (str.substring(0, 1).equals("h") && str.substring(1, 2).equals("i")) {
                 return 1;
             }
         }
-        if(str.length() < 3) {
+        if (str.length() < 3) {
             return 0;
         }
         int count = 0;
         int skip = 1;
-        String firstChar = str.substring(0,1);
-        String secondChar = str.substring(1,2);
-        String thirdChar = str.substring(2,3);
-        if(firstChar.equals("h") && secondChar.equals("i")){
+        String firstChar = str.substring(0, 1);
+        String secondChar = str.substring(1, 2);
+        String thirdChar = str.substring(2, 3);
+        if (firstChar.equals("h") && secondChar.equals("i")) {
             count++;
             skip = 2;
-        } else if( !firstChar.equals("x") && secondChar.equals("h") && thirdChar.equals("i")) {
+        } else if (!firstChar.equals("x") && secondChar.equals("h") && thirdChar.equals("i")) {
             count++;
             skip = 3;
-        } else if(firstChar.equals("x") && secondChar.equals("h") && thirdChar.equals("i")) {
+        } else if (firstChar.equals("x") && secondChar.equals("h") && thirdChar.equals("i")) {
             skip = 3;
         }
-        
+
         return count + countHi2(str.substring(skip));
     }
 
+    public boolean nestParen(String str) {
+        if (str.length() == 0) {
+            return true;
+        }
+        boolean isParen = false;
+        if (str.substring(0, 1).equals("(") && str.substring(str.length() - 1).equals(")")) {
+            isParen = true;
+        }
+        return isParen && nestParen(str.substring(1, str.length() - 1));
+    }
+    
+    public int strCount(String str, String sub) {
+        if (str.length() < sub.length()) {
+            return 0;
+        }
 
+        int skip = 1;
+        int count = 0;
+        String s = str.substring(0, sub.length());
+        if (s.equals(sub)) {
+            count++;
+            skip = sub.length();
+        }
+
+        return count + strCount(str.substring(skip), sub);
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello");
