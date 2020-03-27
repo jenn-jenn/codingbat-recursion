@@ -338,6 +338,23 @@ public class recursion1 {
 
         return count + strCount(str.substring(skip), sub);
     }
+    
+    public String parenBit(String str) {
+        // if(str.charAt(0) == '(' && str.charAt(str.length() - 1) == ')') return str;
+        // else if (str.charAt(0) == '(') return parenBit(str.substring(0, str.length()
+        // - 1));
+        // else return parenBit(str.substring(1));
+
+        if (str.charAt(0) != '(') {
+            return parenBit(str.substring(1));
+        }
+
+        if (str.charAt(str.length() - 1) != ')') {
+            return parenBit(str.substring(0, str.length() - 1));
+        }
+
+        return str;
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello");
